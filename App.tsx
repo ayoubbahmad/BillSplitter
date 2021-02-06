@@ -1,12 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
-import { HomeScreen } from './src/screens/HomeScreen';
+import 'react-native-gesture-handler';
+import { App } from 'containers/App';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const app: React.FC = () => {
   return (
-    <View>
-      <HomeScreen />
-    </View>
+    <SafeAreaProvider>
+      <App />
+    </SafeAreaProvider>
   );
 };
 
