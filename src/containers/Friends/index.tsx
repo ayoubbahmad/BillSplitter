@@ -2,8 +2,9 @@ import { CurvedCorner } from 'components/CurvedCorner';
 import { NearByFriend } from 'components/NearByFriend';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 import { COLORS } from 'theme/Colors';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export type IFriendsProps = {};
 
@@ -16,10 +17,10 @@ const Friends: React.FC<IFriendsProps> = ({}) => {
   return (
     <View>
       <View style={[styles.container, styles.row]}>
-        <View style={[styles.searchContainer, { zIndex: 1 }]}>
-          <Text>S</Text>
+        <View style={[styles.searchContainer]}>
+          <AntDesign name="search1" size={32} />
         </View>
-        <View style={styles.nearByFriendsContainer}>
+        <View style={styles.nearByFriendsHeaderContainer}>
           <View
             style={[
               {
@@ -28,14 +29,7 @@ const Friends: React.FC<IFriendsProps> = ({}) => {
               },
             ]}>
             <View
-              style={[
-                {
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  width: '100%',
-                },
-                styles.row,
-              ]}>
+              style={[styles.nearByFriendsTitleSeeAllContainer, styles.row]}>
               <Text style={[styles.title, styles.nearByFriendsTitle]}>
                 Nearby friends
               </Text>
@@ -127,8 +121,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1,
   },
-  nearByFriendsContainer: {
+  nearByFriendsHeaderContainer: {
     marginLeft: SPACE,
     backgroundColor: COLORS.PRIMARY_COLOR,
     flex: 1,
@@ -140,7 +135,11 @@ const styles = StyleSheet.create({
     color: COLORS.SECONDARY_COLOR,
     fontWeight: '600',
   },
-
+  nearByFriendsTitleSeeAllContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    width: '100%',
+  },
   nearByFriendsTitle: {},
   recentlyName: {
     paddingVertical: 8,

@@ -15,10 +15,14 @@ export type IHomeScreenProps = {};
 const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
   const insets = useSafeAreaInsets();
   return (
-    <View
-      style={[styles.container, { paddingTop: Math.max(insets.top + 12, 12) }]}>
-      <Header />
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+    <View style={[styles.container]}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          styles.scrollViewContentContainerStyle,
+          { paddingTop: Math.max(insets.top + 12, 12) },
+        ]}>
+        <Header />
         <View style={styles.splitterShortcutContainer}>
           <SplitterShortcut />
         </View>
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.BACKGROUND_COLOR,
   },
+  scrollViewContentContainerStyle: { paddingBottom: 32 },
   splitterShortcutContainer: { marginHorizontal: 32, marginTop: 32, zIndex: 1 },
   previousSplitContainer: { marginHorizontal: 32, marginTop: 28, zIndex: 0 },
   friendsContainer: { marginHorizontal: 32, marginTop: 28 },

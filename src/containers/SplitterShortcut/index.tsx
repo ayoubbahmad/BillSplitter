@@ -1,12 +1,37 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, View, StyleSheet, Image, Alert } from 'react-native';
 import { COLORS } from 'theme/Colors';
 import { messages } from './messages';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { CircularAvatar } from 'components/CircularAvatar';
 
 export type ISplitterShortcutProps = {};
 
 const CURRENCY = '$';
+
+const splitWithAvatars = [
+  {
+    id: 1,
+    imageUrl: require('assets/avatars/avatar1.png'),
+    backgroundColor: '#90b5df',
+  },
+  {
+    id: 2,
+    imageUrl: require('assets/avatars/avatar2.png'),
+    backgroundColor: '#b59aef',
+  },
+  {
+    id: 3,
+    imageUrl: require('assets/avatars/avatar3.png'),
+    backgroundColor: '#eda798',
+  },
+  {
+    id: 4,
+    imageUrl: require('assets/avatars/avatar4.png'),
+    backgroundColor: '#ceccbb',
+  },
+];
 
 const SplitterShortcut: React.FC<ISplitterShortcutProps> = ({}) => {
   return (
@@ -19,30 +44,34 @@ const SplitterShortcut: React.FC<ISplitterShortcutProps> = ({}) => {
           {CURRENCY}
           {messages.amount}
         </Text>
-        <TouchableOpacity style={styles.splitNowButton}>
-          <Text style={styles.splitNowButtonText}>{messages.splitNow}</Text>
-        </TouchableOpacity>
+        <View style={styles.splitWIthButtonContainer}>
+          <TouchableOpacity
+            style={[styles.splitNowButton]}
+            onPress={() => {
+              alert('split now');
+            }}>
+            <View>
+              <Text style={styles.splitNowButtonText}>{messages.splitNow}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={{}}>
+      <View>
         <Text style={[styles.text, styles.titleText, styles.splitWith]}>
           {messages.splitWith}
         </Text>
         <View style={styles.flexOne}>
-          <View
-            style={[styles.splitWithListContainer, { position: 'absolute' }]}>
-            {[1, 2, 3, 4].map((item) => {
-              return <View key={`${item}`} style={styles.splitWithItem} />;
+          <View style={[styles.splitWithListContainer]}>
+            {splitWithAvatars.map((item) => {
+              return <CircularAvatar avatar={item} key={`${item.id}`} />;
             })}
-            <View style={[styles.splitWithItem, styles.splitWithAddItem]}>
-              <Text
-                style={{
-                  color: COLORS.WHITE_BACKGROUND,
-                  fontWeight: '700',
-                  fontSize: 16,
-                }}>
-                +
-              </Text>
-            </View>
+            <TouchableOpacity
+              style={[styles.addSplitWith]}
+              onPress={() => {
+                alert('Add action');
+              }}>
+              <AntDesign name="pluscircle" color={'#f1aa9b'} size={38} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -60,19 +89,23 @@ const styles = StyleSheet.create({
   titleText: { fontSize: 16, fontWeight: '500', marginBottom: 12 },
   totalBill: {},
   totalBillAmount: { fontSize: 28, fontWeight: '800' },
+  splitWIthButtonContainer: {
+    alignSelf: 'baseline',
+  },
   splitWith: {},
   splitWithListContainer: {
     backgroundColor: 'white',
     borderRadius: 16,
     alignItems: 'center',
     padding: 12,
+    position: 'absolute',
   },
-  splitWithItem: {
-    width: 40,
-    height: 40,
-    backgroundColor: 'blue',
+  addSplitWith: {
+    backgroundColor: 'white',
+    marginBottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 20,
-    marginBottom: -8,
     borderWidth: 1,
     borderColor: COLORS.WHITE_BACKGROUND,
   },
@@ -86,7 +119,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
 
     backgroundColor: COLORS.BACKGROUND_COLOR,
-    alignSelf: 'baseline',
+
     marginTop: 20,
 
     borderRadius: 16,

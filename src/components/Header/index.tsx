@@ -9,7 +9,7 @@ export type IHeaderProps = {};
 const Header: React.FC<IHeaderProps> = ({}) => {
   return (
     <View style={[styles.container, styles.row]}>
-      <View>
+      <View style={styles.titlesCOntainer}>
         <Text style={[styles.headerText, styles.agecyName]}>
           {messages.agecyName}
         </Text>
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     justifyContent: 'space-between',
   },
+  titlesCOntainer: { justifyContent: 'center' },
   headerText: {
     color: COLORS.TEXT_ON_PRIMARY_COLOR,
     fontSize: 32,

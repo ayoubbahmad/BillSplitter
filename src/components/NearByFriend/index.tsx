@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { COLORS } from 'theme/Colors';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export type INearByFreindProps = {};
 
@@ -8,7 +9,6 @@ const NearByFriend: React.FC<INearByFreindProps> = ({}) => {
   return (
     <View
       style={{
-        flex: 1,
         backgroundColor: COLORS.BACKGROUND_COLOR,
         borderRadius: 130,
         alignItems: 'center',
@@ -23,19 +23,16 @@ const NearByFriend: React.FC<INearByFreindProps> = ({}) => {
         }}
       />
       <Text style={styles.name}>Name</Text>
+
       <View
         style={{
-          backgroundColor: COLORS.SECONDARY_COLOR,
+          backgroundColor: 'white',
           position: 'absolute',
           bottom: -12,
-          padding: 12,
-          justifyContent: 'center',
-          alignItems: 'center',
           borderRadius: 20,
-          width: 20,
-          height: 20,
-        }}
-      />
+        }}>
+        <AntDesign name="pluscircle" color={COLORS.SECONDARY_COLOR} size={24} />
+      </View>
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS } from 'theme/Colors';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export type IPreviousSplitProps = {};
 
@@ -8,12 +9,11 @@ const PreviousSplit: React.FC<IPreviousSplitProps> = ({}) => {
   return (
     <View style={[styles.container, styles.row]}>
       <View style={[styles.exclamationMark]}>
-        <Text
-          style={{
-            color: COLORS.SECONDARY_COLOR,
-          }}>
-          !
-        </Text>
+        <AntDesign
+          name="exclamationcircleo"
+          color={COLORS.SECONDARY_COLOR}
+          size={28}
+        />
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.previousSplitTitle}>Your previous Split</Text>
