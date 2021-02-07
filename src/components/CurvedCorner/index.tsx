@@ -1,39 +1,49 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { COLORS } from 'theme/Colors';
 
-export type ICurvedCornerProps = {};
+type cornerPositions = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-const SEARSH_SIZE = 72;
-const SPACE = 8;
+export type ICurvedCornerProps = {
+  size?: number;
+  cornerPosition?: cornerPositions;
+};
 
-const CURVED_SECTION_SIZE = 20;
+const DEFAULT_CURVED_SECTION_SIZE = 40;
 
-const CurvedCorner: React.FC<ICurvedCornerProps> = ({}) => {
+const CurvedCorner: React.FC<ICurvedCornerProps> = ({
+  size = DEFAULT_CURVED_SECTION_SIZE,
+  cornerPosition = 'bottomRight',
+}) => {
   return (
-    <View
-      style={{
-        width: CURVED_SECTION_SIZE * 2,
-        height: CURVED_SECTION_SIZE * 2,
-        overflow: 'hidden',
-        zIndex: 0,
-      }}>
+    <View style={[styles.container, { width: size, height: size }]}>
       <View
-        style={{
-          width: CURVED_SECTION_SIZE * 4,
-          height: CURVED_SECTION_SIZE * 4,
-          backgroundColor: COLORS.BACKGROUND_COLOR,
-          borderRadius: CURVED_SECTION_SIZE * 2,
-          borderColor: COLORS.PRIMARY_COLOR,
-          borderWidth: CURVED_SECTION_SIZE,
-          overflow: 'hidden',
-          padding: 10,
-          left: -CURVED_SECTION_SIZE * 2,
-          top: -CURVED_SECTION_SIZE * 2,
-        }}
+        style={[
+          styles.shape,
+          {
+            width: size * 2,
+            height: size * 2,
+            borderRadius: size,
+            borderWidth: size / 2,
+            left: -size,
+            top: -size,
+          },
+        ]}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    overflow: 'hidden',
+  },
+  shape: {
+    backgroundColor: 'transparent',
+    borderColor: COLORS.PRIMARY_COLOR,
+    overflow: 'hidden',
+    padding: 10,
+  },
+});
 
 export { CurvedCorner };

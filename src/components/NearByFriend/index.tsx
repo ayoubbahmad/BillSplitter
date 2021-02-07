@@ -1,47 +1,62 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ColorValue,
+  ImageSourcePropType,
+} from 'react-native';
 import { COLORS } from 'theme/Colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { CircularAvatar } from 'components/CircularAvatar';
 
-export type INearByFreindProps = {};
+export type INearByFreindProps = {
+  avatar: {
+    backgroundColor: ColorValue;
+    imageUrl: ImageSourcePropType;
+    name: string;
+  };
+};
 
-const NearByFriend: React.FC<INearByFreindProps> = ({}) => {
+const NearByFriend: React.FC<INearByFreindProps> = ({ avatar }) => {
   return (
-    <View
-      style={{
-        backgroundColor: COLORS.BACKGROUND_COLOR,
-        borderRadius: 130,
-        alignItems: 'center',
-        paddingVertical: 12,
-        paddingBottom: 20,
-      }}>
-      <View
-        style={{
-          padding: 20,
-          backgroundColor: 'white',
-          borderRadius: 50,
-        }}
-      />
-      <Text style={styles.name}>Name</Text>
+    <View style={styles.container}>
+      <CircularAvatar avatar={avatar} />
+      <Text style={styles.name}>{avatar.name}</Text>
 
-      <View
-        style={{
-          backgroundColor: 'white',
-          position: 'absolute',
-          bottom: -12,
-          borderRadius: 20,
-        }}>
-        <AntDesign name="pluscircle" color={COLORS.SECONDARY_COLOR} size={24} />
+      <View style={styles.plusButton}>
+        <TouchableOpacity>
+          <AntDesign
+            name="pluscircle"
+            color={COLORS.SECONDARY_COLOR}
+            size={24}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.BACKGROUND_COLOR,
+    borderRadius: 130,
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
   name: {
     paddingVertical: 8,
+    paddingTop: 16,
     color: COLORS.TEXT_DEFAULT_COLOR,
-    fontWeight: '600',
+    fontWeight: '700',
+    fontSize: 12,
+  },
+  plusButton: {
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: -12,
+    borderRadius: 20,
   },
 });
 
