@@ -23,6 +23,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
           { paddingTop: Math.max(insets.top + 12, 12) },
         ]}>
         <Header />
+
         <View style={styles.splitterShortcutContainer}>
           <SplitterShortcut />
         </View>
