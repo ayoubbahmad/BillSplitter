@@ -80,7 +80,7 @@ const Friends: React.FC<IFriendsProps> = ({}) => {
             ]}>
             {nearByAvatars.map((item) => {
               return (
-                <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center' }} key={`${item.id}`}>
                   <View
                     style={[
                       styles.recentlyAvatarContainer,

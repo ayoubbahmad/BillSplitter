@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Text, View, StyleSheet, Image, Alert } from 'react-native';
 import { COLORS } from 'theme/Colors';
 import { messages } from './messages';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { CircularAvatar } from 'components/CircularAvatar';
+import { useNavigation } from '@react-navigation/native';
 
 export type ISplitterShortcutProps = {};
 
@@ -34,6 +35,12 @@ const splitWithAvatars = [
 ];
 
 const SplitterShortcut: React.FC<ISplitterShortcutProps> = ({}) => {
+  const navigation = useNavigation();
+
+  const navigateToDetails = useCallback(() => {
+    navigation.navigate('Details');
+  }, []);
+
   return (
     <View style={[styles.container, styles.row]}>
       <View style={styles.flexOne}>
@@ -47,9 +54,7 @@ const SplitterShortcut: React.FC<ISplitterShortcutProps> = ({}) => {
         <View style={styles.splitWIthButtonContainer}>
           <TouchableOpacity
             style={[styles.splitNowButton]}
-            onPress={() => {
-              alert('split now');
-            }}>
+            onPress={navigateToDetails}>
             <View>
               <Text style={styles.splitNowButtonText}>{messages.splitNow}</Text>
             </View>
